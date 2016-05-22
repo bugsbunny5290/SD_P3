@@ -1,24 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test;
 
-/**
- *
- * @author sarahjessica
- */
+import java.awt.Graphics;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+
 public class Store extends Vertex {
-   String name;
-   
-   public Store(int i, int j, String name){
-       super(i,j);
-       this.name = name;
-   }
-    
-   public String getName()
-   {
-      return name;
-   }
+
+    /* the main store that will send all the orders to the other stores */
+    private Store mainStore;
+
+    /* Add new store */
+    public void addNewStore(String name1, int x, int y, Store mainStore, Graph j) {
+        addNewVertex(name1, x, y, j);
+        this.mainStore = mainStore;
+    }
+
+    /* search for the connection between this store and the main store */
+    public boolean search() {
+        return areConnected(new ArrayList<Vertex>(), mainStore);
+    }
+
+    /*draw the store*/
+    public void drawStore() {
+        j.drawVertex(this);
+    }
+
 }

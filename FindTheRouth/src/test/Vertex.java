@@ -1,45 +1,83 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test;
 
+//import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
-/**
- *
- * @author sarahjessica
- */
-public class Vertex {
-    int x, y;
-    
-    Vertex(int i, int j) {
-        this.x = i;
-        this.y = j;
+public class Vertex extends JPanel {
+
+    /* the 2 coordonated of the vertex*/
+    private int coordX, coordY;
+    /*the list of connections between the vertices */
+    private ArrayList<Vertex> connections;
+    /* the name of the vertex */
+    private String name;
+    /* the graph for drawing*/
+    protected Graph j;
+    /* the size we want to draw the vertex with */
+    protected int vertexSize = 20;
+
+    /*Add new vertex*/
+    public void addNewVertex(String name1, int x, int y, Graph j)
+    {
+        this.coordX = x;
+        this.coordY = y;
+        this.name = name1;
+        connections = new ArrayList<Vertex>();
+        this.j = j;
     }
     
-    public static ArrayList<Vertex> genVertex(ArrayList<Vertex> arrVertex) {
-        int circleNum = TestUtils.get5To8();
-        ArrayList<Integer> arrNumEachRow = TestUtils.randomWithWeight(circleNum);
-        ArrayList<Integer> arrRows = TestUtils.shuffle0To9();
+    /* Get coordonate X of the vertex */
+    public int getCoordX() {
+        return coordX;
+    }
 
-        for (int i = 0; i < arrNumEachRow.size(); i++) {
-            ArrayList<Integer> arrRowEach = TestUtils.shuffle0To9();
-            for (int k = arrNumEachRow.get(i), j = 0; k > 0; k--, j++) {                             
-                Vertex index = new Vertex(arrRows.get(i), arrRowEach.get(j));
-                arrVertex.add(index);
+    /* Get coordonate Y of the vertex */
+    public int getCoordY() {
+        return coordY;
+    }
+
+    /* Get the size we want the vertex to have */
+    public int getVertexSize() {
+        return vertexSize;
+    }
+
+    /* Get the name of the vertex */
+    public String getVertexName() {
+        return name;
+    }
+
+    /* Connect 2 vertices */
+    public void connect(Vertex s1) {
+        if (connections.contains(s1) == false) {
+            connections.add(s1);
+        }
+    }
+
+    /* Disconnect 2 vertices */
+    public void disconnect(Vertex s1) {
+        connections.remove(s1);
+    }
+
+    /* Search to see if they are connected and draws them */
+    public boolean areConnected(ArrayList<Vertex> visited, Vertex v) {
+        if (connections.contains(v)) {
+            j.drawEdge(this, v, 3);
+            return true;
+        } else {
+            visited.add(this);
+            for (Vertex i : connections) {
+                if (visited.contains(i) == false) {
+                    if (i.areConnected(visited, v) == true) {
+                        j.drawEdge(this, i, 3);
+                        return true;
+                    }
+                }
             }
         }
-        
-        return(arrVertex);
+        return false;
     }
-    
-    boolean equals(Vertex rhs) {
-        boolean ret = false;
-        if(rhs.x == this.x && rhs.y == this.y) {
-            ret = true;
-        }
-        return ret;
-    }
+
 }
