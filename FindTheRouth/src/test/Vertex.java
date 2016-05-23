@@ -9,7 +9,8 @@ import javax.swing.JPanel;
 public class Vertex extends JPanel {
 
     /* the 2 coordonated of the vertex*/
-    private int coordX, coordY;
+    private int coordX;
+    private int coordY;
     /*the list of connections between the vertices */
     private ArrayList<Vertex> connections;
     /* the name of the vertex */
@@ -79,5 +80,5 @@ public class Vertex extends JPanel {
         }
         return false;
     }
-
+    
 }
