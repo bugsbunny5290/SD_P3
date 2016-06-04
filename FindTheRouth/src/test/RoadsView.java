@@ -7,7 +7,10 @@ package test;
 
 public class RoadsView extends javax.swing.JFrame {
 
-    public Road r1,r2,r3,r4;
+    public Road r1;
+    public Road r2;
+    public Road r3;
+    public Road r4;
     
     public RoadsView(Road r1, Road r2, Road r3, Road r4) {
         initComponents();
@@ -32,14 +35,16 @@ public class RoadsView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         ComboBoxS1S2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSaveRoads = new javax.swing.JButton();
+        btnCancelRoads = new javax.swing.JButton();
         ComboBoxS2S3 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         ComboBoxS2S4 = new javax.swing.JComboBox<>();
         ComboBoxS3S5 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
 
         jLabel1.setText("Store 1 -> Store 2");
 
@@ -50,17 +55,17 @@ public class RoadsView extends javax.swing.JFrame {
         ComboBoxS1S2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unavailable", "Available" }));
         ComboBoxS1S2.setSelectedIndex(1);
 
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSaveRoads.setText("Save");
+        btnSaveRoads.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSaveRoadsActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelRoads.setText("Cancel");
+        btnCancelRoads.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelRoadsActionPerformed(evt);
             }
         });
 
@@ -98,9 +103,9 @@ public class RoadsView extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSaveRoads, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelRoads, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)))
                 .addGap(33, 33, 33))
         );
@@ -125,15 +130,15 @@ public class RoadsView extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnSaveRoads)
+                    .addComponent(btnCancelRoads))
                 .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSaveRoadsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveRoadsActionPerformed
         // TODO add your handling code here:
         r1.setRoadAvailability(ComboBoxS1S2.getSelectedIndex());
         r1.drawRoad();
@@ -146,14 +151,16 @@ public class RoadsView extends javax.swing.JFrame {
         
         r4.setRoadAvailability(ComboBoxS3S5.getSelectedIndex());
         r4.drawRoad();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        this.dispose();
+    }//GEN-LAST:event_btnSaveRoadsActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCancelRoadsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRoadsActionPerformed
         // TODO add your handling code here:
         
-        setVisible(false); //you can't see me!
-        dispose(); //Destroy the JFrame object
-    }//GEN-LAST:event_jButton2ActionPerformed
+        setVisible(false); 
+        dispose();
+    }//GEN-LAST:event_btnCancelRoadsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,8 +203,8 @@ public class RoadsView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxS2S3;
     private javax.swing.JComboBox<String> ComboBoxS2S4;
     private javax.swing.JComboBox<String> ComboBoxS3S5;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCancelRoads;
+    private javax.swing.JButton btnSaveRoads;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
